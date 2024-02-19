@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const apiRouter = express.Router();
 
 
 const HOST:string = process.env.HOST_SERVER || 'localhost';
