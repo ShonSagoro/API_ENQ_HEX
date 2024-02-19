@@ -26,3 +26,13 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 
 8. [ ] **Gestión de Comentarios y Valoraciones:**
    - Se permitirá a los usuarios dejar comentarios y valoraciones sobre su experiencia en el hotel después de completar su estadía, lo que ayudará a otros usuarios a tomar decisiones informadas.
+
+<pre>
+ㅤ  ∧＿∧
+　(　･∀･)
+　(　つ┳⊃
+ε (_)へ⌒ヽﾌ
+ (　　(　･ω･)
+ ◎―◎   ⊃  ⊃  --> la guia de instalacion se encuentra en otro readme,
+en otro repo, en otra pagina... (no la hice)
+</pre>
