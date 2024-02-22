@@ -1,5 +1,5 @@
-import { Reservation } from "../Domain/Entities/Reservation";
-import { ReservationInterface } from "../Domain/Port/ReservationInterface";
+import { Reservation } from "../../Domain/Entities/Reservation";
+import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 
 export class FindReservationByUUIDUseCase {
     constructor(readonly reservationInterface: ReservationInterface) {}

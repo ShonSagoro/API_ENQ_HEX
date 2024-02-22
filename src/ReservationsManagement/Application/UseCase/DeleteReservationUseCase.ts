@@ -1,4 +1,4 @@
-import { ReservationInterface } from "../Domain/Port/ReservationInterface";
+import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 
 export class DeleteReservationUseCase {
     constructor(readonly reservationInterface: ReservationInterface) {}
