@@ -1,7 +1,7 @@
 
 import { Hotel } from "../Entities/Hotel";
 
-export interface UserInterface {
+export interface HotelInterface {
     findByName(email: string): Promise<Hotel | null>;
     findByUUID(uuid: string): Promise<Hotel | null>;
     delete(uuid: string): Promise<void>;
