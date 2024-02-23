@@ -31,7 +31,6 @@ export async function query(sql: string, params: any[]) {
     }
 }
 
-
 async function runMigrationScript(filename: string) {
     try {
         const content = fs.readFileSync(filename, 'utf8');
@@ -47,6 +46,4 @@ async function runMigrationScript(filename: string) {
     }
 }
 
-// Ejecutar la migración 'up'
 runMigrationScript('./src/UserManagement/Infraestructure/Migrations/mysq_migrations/user_up.sql');
-
