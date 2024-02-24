@@ -1,7 +1,6 @@
 import { GetByUuidHotelCase } from "../../Application/UseCase/GetByUuidHotelCase";
 import { Request, Response } from 'express';
 
-
 export default class GetByUuidHotelController {
     constructor(readonly getByUuidHotelCase: GetByUuidHotelCase) { }
 

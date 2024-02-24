@@ -8,5 +8,4 @@ export interface HotelInterface {
     update(uuid:string, user: Hotel, images: string[]): Promise<Hotel | null>;
     list(): Promise<Hotel[]|null>;
     register(hotel: Hotel): Promise<Hotel | null>;
-
 }
