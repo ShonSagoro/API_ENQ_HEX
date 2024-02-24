@@ -1,6 +1,6 @@
 import { HotelInterface } from "../../Domain/Port/HotelInterface";
 
-export class DeleteUserCase {
+export class DeleteHotelCase {
     constructor(readonly hotelInterface: HotelInterface) {}
 
     async execute(uuid: string): Promise<void> {
