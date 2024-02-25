@@ -58,7 +58,7 @@ export const listServicesCase = new ListServiceCase(databaseServicesRepository);
 export const updateServiceCase = new UpdateServiceCase(databaseServicesRepository);
 
 export const createHotelController = new CreateHotelController(createHotelCase);
-export const deleteHolteController = new DeleteHotelController(deleteHotelCase);
+export const deleteHotelController = new DeleteHotelController(deleteHotelCase);
 export const deleteHotelImagesController = new DeleteHotelImagesController(deleteHotelImagesCase);
 export const deleteHotelRoomController = new DeleteHotelRoomController(deleteHotelRoomCase);
 export const getByUuidHotelController = new GetByUuidHotelController(getByUuidHotelCase);
