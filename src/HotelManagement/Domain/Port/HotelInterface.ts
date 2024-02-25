@@ -9,11 +9,11 @@ export interface HotelInterface {
     delete(uuid: string): Promise<void>;
     update(uuid:string, user: Hotel): Promise<Hotel | null>;
     list(): Promise<Hotel[]|null>;
-    listRooms(uuid: string): Promise<Room[]|null>;//TODO: complete this method
-    listImages(uuid: string): Promise<Images[]|null>;//TODO: complete this method
+    listRooms(uuid: string): Promise<Room[]|null>;
+    listImages(uuid: string): Promise<Images[]|null>;
     register(hotel: Hotel): Promise<Hotel | null>;
-    registerRoom(uuid: string, room: Room): Promise<Room | null>;//TODO: complete this method
-    addImageHotel(uuid: string, image: Images): Promise<Images | null>;//TODO: complete this method
-    deleteImageHotel(uuid: string, uuid_image:string): Promise<void>; //TODO: complete this method
-    deleteRoom(uuid: string, number_room:number): Promise<void>; //TODO: complete this method
+    registerRoom(uuid: string, room: Room): Promise<Room | null>;
+    addImageHotel(uuid: string, image: Images): Promise<Images | null>;
+    deleteImageHotel(uuid: string, uuid_image:string): Promise<void>; 
+    deleteRoom(uuid: string, number_room:number): Promise<void>; 
 }
