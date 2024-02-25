@@ -90,7 +90,7 @@ export class MongoHotelRepository implements HotelInterface {
             throw new Error('Error deleting hotel');
         }
     }
-    async deleteRoom(uuid: string, number_room: string): Promise<void> {
+    async deleteRoom(uuid: string, number_room: number): Promise<void> {
         try {
             await this.collection.updateOne({ 'uuid': uuid, $pull: { 'rooms': { 'number': number_room } } });
         } catch (error) {
@@ -151,7 +151,7 @@ export class MongoHotelRepository implements HotelInterface {
             return null;
         }
     }
-    
+
     private async initializeCollection(): Promise<void> {
         this.collection = await connect("hotel");
     }

@@ -15,5 +15,5 @@ export interface HotelInterface {
     registerRoom(uuid: string, room: Room): Promise<Room | null>;//TODO: complete this method
     addImageHotel(uuid: string, image: Images): Promise<Images | null>;//TODO: complete this method
     deleteImageHotel(uuid: string, uuid_image:string): Promise<void>; //TODO: complete this method
-    deleteRoom(uuid: string, number_room:string): Promise<void>; //TODO: complete this method
+    deleteRoom(uuid: string, number_room:number): Promise<void>; //TODO: complete this method
 }

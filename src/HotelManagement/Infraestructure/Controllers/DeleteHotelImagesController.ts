@@ -1,15 +1,15 @@
 import { Request, Response } from "express";
-import { DeleteHotelCase } from "../../Application/UseCase/DeleteHotelCase";
+import { DeleteHotelImagesCase } from "../../Application/UseCase/DeleteHotelImagesCase";
 
-export class DeleteHotelController{
-    constructor(readonly deleteHotelCase: DeleteHotelCase){}
+export class DeleteHotelImagesController{
+    constructor(readonly deleteHotelImagesCase: DeleteHotelImagesCase){}
     async execute(req:Request, res:Response): Promise<void> {
-        const { uuid } = req.params;
+        const { uuid, uuid_image } = req.params;
         try {
-            await this.deleteHotelCase.execute(uuid);
+            await this.deleteHotelImagesCase.execute(uuid, uuid_image);
             res.status(200).send({
               status: "success",
-              data: "Hotel successfully deleted",
+              data: "Hotel image successfully deleted",
             });
           } catch (error) {
             res.status(204).send({
