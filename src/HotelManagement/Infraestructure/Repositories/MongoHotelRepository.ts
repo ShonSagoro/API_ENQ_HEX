@@ -14,11 +14,13 @@ export class MongoHotelRepository implements HotelInterface{
     }
     async findByName(name: string): Promise<Hotel | null> {
         try {
-            const result = await this.collection.findOne({ name });
+            const result = await this.collection.find({ name });
             if (result){
-                let hotel = new Hotel(result.name, result.location, result.description, result.rating)
-                hotel.uuid=result.uuid;
-                return hotel;
+                result.map((element: any) => {
+                    let hotel = new Hotel(element.name, element.location, element.description, element.rating)
+                    hotel.uuid=element.uuid;
+                    return hotel
+                });
             }
             return null
         }catch{
@@ -44,14 +46,14 @@ export class MongoHotelRepository implements HotelInterface{
         try {
             await this.collection.deleteOne({ uuid });
         } catch (error) {
-            throw new Error('Error deleting user');
+            throw new Error('Error deleting hotel');
         }
     }
     async update(uuid: string, hotel: Hotel, images: string[]): Promise<Hotel | null> {
         try{
             hotel.uuid = uuid;
             const hotel_images=images.map((image)=>{return new Images(uuid, image)})
-            hotel.images=hotel_images;
+            hotel.setImages(hotel_images);
             await this.collection.updateOne({ uuid }, { $set: hotel });
             return hotel;
         }catch{
@@ -62,13 +64,11 @@ export class MongoHotelRepository implements HotelInterface{
         try {
             const result = await this.collection.find().toArray();
             if (result){
-                let hotels:Hotel[] = [];
-                result.forEach((element: any) => {
+                return result.map((element: any) => {
                     let hotel = new Hotel(element.name, element.location, element.description, element.rating)
                     hotel.uuid=element.uuid;
-                    hotels.push(hotel);
+                    return hotel
                 });
-                return hotels;
             }
             return null
         }catch{

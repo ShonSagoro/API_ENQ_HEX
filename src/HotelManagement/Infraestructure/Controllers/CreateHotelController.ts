@@ -7,7 +7,7 @@ export class CreateHotelController{
 
     async excute(req: Request, res: Response){
         const data = req.body;
-        let hotel_Data = new Hotel(data.name, data.location, data.description, data.rating);
+        let hotel_Data = new Hotel(data.name, data.address, data.description, data.rating);
         try{
             let hotel = await this.createHotelCase.excute(hotel_Data);
             if(hotel){
@@ -15,10 +15,10 @@ export class CreateHotelController{
                     status: "success",
                     data: {
                         id: hotel.uuid,
-                        name: hotel.name,
-                        location: hotel.location,
-                        description: hotel.description,
-                        rating: hotel.rating
+                        name: hotel.getName(),
+                        address: hotel.getAddress(),
+                        description: hotel.getDescription(),
+                        rating: hotel.getRating()
                     }
                 });
             }else{

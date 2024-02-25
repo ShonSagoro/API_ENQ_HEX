@@ -1,30 +1,74 @@
 import { v4 as uuidv4 } from 'uuid';
 import { ValidatableEntity } from '../Validations/ValidatableEntity';
 import { Images } from './Images';
+import Room from './Room';
 
 
 export class Hotel implements ValidatableEntity {
 
     public uuid: string;
     
-    public name: string;
+    private name: string;
 
-    public address: string;
+    private address: string;
 
-    public description: string;
+    private description: string;
 
-    public rating: number;
+    private rating: number;
 
-    public images: Images[];
+    private images: Images[];
+    
+    private rooms: Room[];
 
 
     constructor(name: string, address: string, description: string, rating: number) {
         this.uuid = uuidv4();
-        this.name=name
-        this.address=address
-        this.description=description
-        this.rating=rating
-        this.images=[]
+        this.name = name;
+        this.address = address;
+        this.description = description;
+        this.rating = rating;
+        this.images = [];
+        this.rooms = [];
+    }
+
+    getName(): string {
+        return this.name;
+    }
+
+    setName(name: string): void {
+        this.name = name;
+    }
+
+    getAddress(): string {
+        return this.address;
+    }
+
+    setAddress(address: string): void {
+        this.address = address;
+    }
+
+    getDescription(): string {
+        return this.description;
+    }
+
+    setDescription(description: string): void {
+        this.description = description;
+    }
+
+    getRating(): number {
+        return this.rating;
+    }
+
+    setRating(rating: number): void {
+        this.rating = rating;
+    }
+    
+    getImages(): Images[] {
+        return this.images;
+    }
+
+    setImages(images: Images[]): void {
+        this.images = images;
     }
 
     async validate() {
