@@ -1,22 +1,15 @@
-import { v4 as uuidv4 } from 'uuid';
 
 export default class Room{
-    public uuid: string;
     private number: number;
     private status: string;
     private price: number;
     private type: string;
 
     constructor(number: number, status: string, price: number, type: string) {
-        this.uuid = uuidv4();
         this.number = number;
         this.status = status;
         this.price = price;
         this.type = type;
-    }
-    
-    public getUuid(): string {
-        return this.uuid;
     }
 
     public getNumber(): number {

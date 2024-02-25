@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { DeleteHotelCase } from "../../Application/UseCase/DeleteHotelCase";
 
-export class DeleteUserController{
+export class DeleteHotelController{
     constructor(readonly deleteHotelCase: DeleteHotelCase){}
     async execute(req:Request, res:Response): Promise<void> {
         const { uuid } = req.params;

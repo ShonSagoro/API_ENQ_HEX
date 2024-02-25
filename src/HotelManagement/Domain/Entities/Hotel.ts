@@ -19,8 +19,9 @@ export class Hotel implements ValidatableEntity {
     private images: Images[];
     
     private rooms: Room[];
-
-
+    
+    
+    
     constructor(name: string, address: string, description: string, rating: number) {
         this.uuid = uuidv4();
         this.name = name;
@@ -30,7 +31,14 @@ export class Hotel implements ValidatableEntity {
         this.images = [];
         this.rooms = [];
     }
+    
+    getRooms(): Room[] {
+        return this.rooms;
+    }
 
+    setRooms(rooms: Room[]): void {
+        this.rooms = rooms;
+    }
     getName(): string {
         return this.name;
     }
