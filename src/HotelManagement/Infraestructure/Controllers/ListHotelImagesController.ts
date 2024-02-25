@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { ListHotelImagesCase } from '../../Application/UseCase/ListHotelImagesCase';
 
 
-export default class ListHotelController {
+export default class ListHotelRoomController {
     constructor(readonly listHotelImagesCase: ListHotelImagesCase) { }
 
     async execute(req: Request, res: Response): Promise<void> {
