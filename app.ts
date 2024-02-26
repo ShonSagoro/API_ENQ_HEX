@@ -4,6 +4,7 @@ import morgan from 'morgan';
 import dotenv from 'dotenv';
 import { setUpHotelRoutes } from './src/HotelManagement/Infraestructure/Routes/HotelRoutes';
 import { setUpServicesRoutes } from './src/HotelManagement/Infraestructure/Routes/ServicesRoutes';
+import path from 'path';
 dotenv.config();
 
 const app = express();
@@ -12,6 +13,7 @@ const app = express();
 const HOST:string = process.env.HOST_SERVER || 'localhost';
 const PORT:number  = Number(process.env.PORT_SERVER) || 8080;
 
+app.use(express.static(path.join(__dirname, './public')));
 app.use(express.json()); 
 setupUserRoutes(app);
 setUpHotelRoutes(app);

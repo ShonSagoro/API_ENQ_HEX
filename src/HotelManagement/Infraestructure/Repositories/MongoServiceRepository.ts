@@ -10,10 +10,12 @@ export default class MongoServiceRepository implements ServiceInterface {
     }
     async findByUUID(uuid: string): Promise<Service | null> {
         try {
-            let result = this.collection.findOne({ uuid });
+            let result = await this.collection.findOne({ uuid });
             if (result) {
+                console.log(result);
                 let service = new Service(result.name, result.description);
                 service.uuid = result.uuid;
+                console.log(service);
                 return service;
             } else {
                 return null;
@@ -24,7 +26,7 @@ export default class MongoServiceRepository implements ServiceInterface {
     }
     async delete(uuid: string): Promise<void> {
         try {
-            this.collection.deleteOne({ uuid });
+            await this.collection.deleteOne({ uuid });
         } catch (error) {
             throw new Error("Error deleting service.");
         }
@@ -32,7 +34,7 @@ export default class MongoServiceRepository implements ServiceInterface {
     async update(uuid: string, service: Service): Promise<Service | null> {
         try {
             service.uuid = uuid;
-            this.collection.updateOne({ uuid }, { $set: service });
+            await this.collection.updateOne({ uuid }, { $set: service });
             return service;
         } catch (error) {
             return null;
@@ -41,6 +43,7 @@ export default class MongoServiceRepository implements ServiceInterface {
     async list(): Promise<Service[] | null> {
         try {
             const result = await this.collection.find().toArray();
+            console.log(result);
             if (result) {
                 return result.map((element: any) => {
                     let service = new Service(element.name, element.description);

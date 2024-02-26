@@ -9,7 +9,7 @@ export class UpdateServiceController{
         const {title, description} = req.body;
         const service_data = new Service(title, description);
         try {
-            const hotel = await this.updateServiceCase.excute(uuid, service_data);
+            const hotel = await this.updateServiceCase.execute(uuid, service_data);
 
             if (hotel) {
                 res.status(200).json(hotel);

@@ -5,6 +5,7 @@ export default class GetByUuidHotelController {
     constructor(readonly getByUuidHotelCase: GetByUuidHotelCase) { }
 
     async execute(req: Request, res: Response): Promise<void> {
+        console.log("JAJA2");
         const { uuid } = req.params;
         try {
             const hotel = await this.getByUuidHotelCase.execute(uuid);

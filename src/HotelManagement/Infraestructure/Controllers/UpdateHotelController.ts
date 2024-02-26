@@ -6,9 +6,9 @@ export class UpdateHotelController{
     
     async execute(req: Request, res: Response): Promise<void> {
         const { uuid } = req.params;
-        const { name, address, description, rating} = req.body;
+        const { name, address, description} = req.body;
 
-        const hotelData = new Hotel(name, address, description, rating)
+        const hotelData = new Hotel(name, address, description)
         try {
             const hotel = await this.updateHotelCase.execute(uuid, hotelData);
 

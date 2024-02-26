@@ -4,7 +4,7 @@ import { Images } from "../Entities/Images";
 import Room from "../Entities/Room";
 
 export interface HotelInterface {
-    findByName(email: string): Promise<Hotel | null>;
+    findByName(email: string): Promise<Hotel[] | null>;
     findByUUID(uuid: string): Promise<Hotel | null>;
     delete(uuid: string): Promise<void>;
     update(uuid:string, user: Hotel): Promise<Hotel | null>;

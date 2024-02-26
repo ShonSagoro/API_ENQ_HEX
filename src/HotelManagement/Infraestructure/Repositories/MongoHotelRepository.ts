@@ -11,13 +11,18 @@ export class MongoHotelRepository implements HotelInterface {
         this.initializeCollection();
     }
 
-    async findByName(name: string): Promise<Hotel | null> {
+    async findByName(name: string): Promise<Hotel[] | null> {
         try {
-            const result = await this.collection.find({ name });
+            console.log(name);
+            const result = await this.collection.find({ name }).toArray();
+            console.log(result);
             if (result) {
-                result.map((element: any) => {
-                    let hotel = new Hotel(element.name, element.location, element.description, element.rating)
+                return result.map((element: any) => {
+                    let hotel = new Hotel(element.name, element.location, element.description)
                     hotel.uuid = element.uuid;
+                    hotel.setImages(element.images);
+                    hotel.setRooms(element.rooms);
+                    hotel.setRating(element.rating);
                     return hotel
                 });
             }
@@ -101,8 +106,11 @@ export class MongoHotelRepository implements HotelInterface {
         try {
             const result = await this.collection.findOne({ uuid });
             if (result) {
-                let hotel = new Hotel(result.name, result.location, result.description, result.rating)
+                let hotel = new Hotel(result.name, result.location, result.description)
                 hotel.uuid = result.uuid;
+                hotel.setImages(result.images);
+                hotel.setRooms(result.rooms);
+                hotel.setRating(result.rating);
                 return hotel;
             }
             return null
@@ -121,7 +129,9 @@ export class MongoHotelRepository implements HotelInterface {
     async update(uuid: string, hotel: Hotel): Promise<Hotel | null> {
         try {
             hotel.uuid = uuid;
-            await this.collection.updateOne({ uuid }, { $set: hotel });
+            let result=await this.collection.updateOne({ uuid }, { $set: hotel });
+            hotel.setImages(result.images);
+            hotel.setRooms(result.rooms);
             return hotel;
         } catch {
             return null;
@@ -130,10 +140,14 @@ export class MongoHotelRepository implements HotelInterface {
     async list(): Promise<Hotel[] | null> {
         try {
             const result = await this.collection.find().toArray();
+            console.log(result);
             if (result) {
                 return result.map((element: any) => {
-                    let hotel = new Hotel(element.name, element.location, element.description, element.rating)
+                    let hotel = new Hotel(element.name, element.location, element.description)
                     hotel.uuid = element.uuid;
+                    hotel.setImages(element.images);
+                    hotel.setRooms(element.rooms);
+                    hotel.setRating(element.rating);
                     return hotel
                 });
             }

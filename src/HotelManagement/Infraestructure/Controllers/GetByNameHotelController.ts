@@ -6,6 +6,8 @@ export default class GetByNameHotelController{
 
     async execute(req: Request, res: Response): Promise<void> {
         const { name } = req.params;
+        console.log("JAJA2");
+        console.log(`name: ${name}`)
         try {
             const hotel = await this.getByNameHotelCase.execute(name);
 

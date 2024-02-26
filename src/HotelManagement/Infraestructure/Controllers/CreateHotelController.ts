@@ -5,11 +5,11 @@ import { CreateHotelCase } from "../../Application/UseCase/CreateHotelCase";
 export class CreateHotelController{
     constructor(readonly createHotelCase: CreateHotelCase){}
 
-    async excute(req: Request, res: Response){
+    async execute(req: Request, res: Response){
         const data = req.body;
-        let hotel_Data = new Hotel(data.name, data.address, data.description, data.rating);
+        let hotel_Data = new Hotel(data.name, data.address, data.description);
         try{
-            let hotel = await this.createHotelCase.excute(hotel_Data);
+            let hotel = await this.createHotelCase.execute(hotel_Data);
             if(hotel){
                 res.status(200).send({
                     status: "success",

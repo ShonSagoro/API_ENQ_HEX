@@ -8,6 +8,7 @@ export default class ListHotelController {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const hotel = await this.listHotelCase.execute();
+            console.log("JAJA3");
 
             if (hotel) {
                 res.status(200).json(hotel);

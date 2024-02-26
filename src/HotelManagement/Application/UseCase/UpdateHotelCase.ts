@@ -1,6 +1,4 @@
 import { Hotel } from "../../Domain/Entities/Hotel";
-import { Images } from "../../Domain/Entities/Images";
-import Room from "../../Domain/Entities/Room";
 import { HotelInterface } from "../../Domain/Port/HotelInterface";
 
 

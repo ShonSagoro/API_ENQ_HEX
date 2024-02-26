@@ -8,7 +8,6 @@ export default class ListServiceController {
     async execute(req: Request, res: Response): Promise<void> {
         try {
             const services = await this.listServiceCase.execute();
-
             if (services) {
                 res.status(200).json(services);
             } else {

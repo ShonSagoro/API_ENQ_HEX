@@ -22,12 +22,12 @@ export class Hotel implements ValidatableEntity {
     
     
     
-    constructor(name: string, address: string, description: string, rating: number) {
+    constructor(name: string, address: string, description: string) {
         this.uuid = uuidv4();
         this.name = name;
         this.address = address;
         this.description = description;
-        this.rating = rating;
+        this.rating = 0;
         this.images = [];
         this.rooms = [];
     }

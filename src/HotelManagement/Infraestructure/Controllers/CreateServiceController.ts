@@ -4,11 +4,11 @@ import { Service } from "../../Domain/Entities/Service";
 
 export class CreateServiceController {
     constructor(readonly createServiceCase: CreateServiceCase) {}
-    async excute(req: Request, res: Response) {
+    async execute(req: Request, res: Response) {
         const data = req.body;
         let serviceData = new Service(data.title, data.description);
         try {
-            let service = await this.createServiceCase.excute(serviceData);
+            let service = await this.createServiceCase.execute(serviceData);
             if (service) {
                 res.status(200).send({
                     status: "success",

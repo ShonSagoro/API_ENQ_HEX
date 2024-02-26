@@ -34,6 +34,9 @@ import { RegisterHotelRoomController } from "./Controllers/RegisterHotelRoomCont
 import { UpdateHotelController } from "./Controllers/UpdateHotelController";
 import { UpdateServiceController } from "./Controllers/UpdateServiceController";
 import { UpdateServiceCase } from "../Application/UseCase/UpdateServiceCase";
+import { AddHotelImageController } from "./Controllers/AddHotelImageController";
+import StorageGoogleService from "./services/StorageGoogleService";
+import StorageLocalService from "./services/StorageLocalService";
 
 export const databaseHotelRepository = new MongoHotelRepository();
 export const databaseServicesRepository = new MongoServiceRepository();
@@ -56,10 +59,11 @@ export const deleteServiceCase = new DeleteServiceCase(databaseServicesRepositor
 export const getByUuidServiceCase = new GetByUuidServiceCase(databaseServicesRepository);
 export const listServicesCase = new ListServiceCase(databaseServicesRepository);
 export const updateServiceCase = new UpdateServiceCase(databaseServicesRepository);
+export const storageService = new StorageLocalService();
 
 export const createHotelController = new CreateHotelController(createHotelCase);
 export const deleteHotelController = new DeleteHotelController(deleteHotelCase);
-export const deleteHotelImagesController = new DeleteHotelImagesController(deleteHotelImagesCase);
+export const deleteHotelImagesController = new DeleteHotelImagesController(deleteHotelImagesCase, storageService);
 export const deleteHotelRoomController = new DeleteHotelRoomController(deleteHotelRoomCase);
 export const getByUuidHotelController = new GetByUuidHotelController(getByUuidHotelCase);
 export const getByNameHotelController = new GetByNameHotelController(getByNameHotelCase);
@@ -68,6 +72,7 @@ export const listHotelImagesController = new ListHotelImagesController(listHotel
 export const listHotelRoomController = new ListHotelRoomsController(listHotelRoomCase);
 export const registerHotelRoomController = new RegisterHotelRoomController(registerHotelRoomCase);
 export const updateHotelController = new UpdateHotelController(updateHotelCase);
+export const addImageHotelController = new AddHotelImageController(addImageHotelCase, storageService);
 
 export const createServiceController = new CreateServiceController(createServiceCase);
 export const deleteServiceController = new DeleteServiceController(deleteServiceCase);

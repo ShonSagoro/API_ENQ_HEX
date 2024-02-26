@@ -5,7 +5,7 @@ import Room from "../../Domain/Entities/Room";
 export class RegisterHotelRoomController{
     constructor(readonly registerHotelRoomCase: RegisterHotelRoomCase){}
 
-    async excute(req: Request, res: Response){
+    async execute(req: Request, res: Response){
         const data = req.body;
         let room_data = new Room(data.number, data.price, data.type, data.description);
         let uuid = req.params.uuid;
