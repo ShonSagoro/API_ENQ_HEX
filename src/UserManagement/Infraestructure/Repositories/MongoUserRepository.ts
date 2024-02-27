@@ -1,4 +1,4 @@
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 import { Collection } from "mongodb";
 import { Contact } from "../../Domain/Entities/Contact";
 import { Credentials } from "../../Domain/Entities/Credentials";
