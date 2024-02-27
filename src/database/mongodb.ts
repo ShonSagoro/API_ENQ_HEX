@@ -5,11 +5,11 @@ import { Signale } from "signale";
 dotenv.config();
 
 const signale = new Signale();
-const MONGO_USER = process.env.MONGO_USER;
-const MONGO_PASS = process.env.MONGO_PASS;
-const MONGO_HOST = process.env.MONGO_HOST;
 
-const uri = `mongodb://${MONGO_USER}:${MONGO_PASS}@${MONGO_HOST}/`;
+const MONGO_HOST = process.env.MONGO_HOST;
+const MONGO_PORT = process.env.MONGO_PORT;
+
+const uri = `mongodb://${MONGO_HOST}:${MONGO_PORT}`;
 console.log(uri);
 
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true } as MongoClientOptions);

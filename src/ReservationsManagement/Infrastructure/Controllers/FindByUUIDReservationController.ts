@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { FindByUUIDReservationUseCase } from '../../Application/UseCase/FindByUUIDReservationUseCase';
 
-export default class FindByUUIDReservationController {
+export class FindByUUIDReservationController {
     constructor(readonly findByUUIDReservationUseCase: FindByUUIDReservationUseCase) { }
 
     async execute(req: Request, res: Response): Promise<void> {
