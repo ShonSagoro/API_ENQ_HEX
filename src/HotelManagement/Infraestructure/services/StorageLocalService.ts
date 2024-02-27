@@ -20,7 +20,7 @@ export default class StorageLocalService implements StorageService {
             }
 
             const filePath = path.join(uploadDirectory, file.originalname);
-            let url = this.URL + file.originalname;
+            let url = this.URL   + file.originalname;
             fs.readFile(file.path, (err, data) => {
                 if (err) {
                     console.error('Error al leer el archivo:', err);
