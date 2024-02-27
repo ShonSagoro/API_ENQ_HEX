@@ -8,7 +8,15 @@ dotenv.config();
 const Verifytoken = JWTMiddleware.VerifyTokenTry;
 const MODEL_URL = "hotels";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
-const storage = multer.diskStorage({});
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, 'public/images');
+    },
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+      cb(null, file.fieldname + '-' + uniqueSuffix + '.' + file.originalname.split('.').pop());
+    }
+  });
 const upload = multer({ storage });
 
 export function setUpHotelRoutes(app: Express) {

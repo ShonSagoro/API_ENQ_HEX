@@ -6,24 +6,27 @@ import path from 'path';
 dotenv.config();
 
 export default class StorageLocalService implements StorageService {
+    HOST_SERVER = process.env.HOST_SERVER || 'localhost';
+    PORT_SERVER = Number(process.env.PORT_SERVER) || 8080;
+    URL = `http://${this.HOST_SERVER}:${this.PORT_SERVER}/`;
     async saveImage(file: any): Promise<string|null> {
         try {
-            const uploadDirectory = path.join(__dirname, '../public'); 
+            console.log(file)
+            console.log("el archivo es: ", file.originalname)
+            const uploadDirectory = path.join(__dirname, '../../../../public/images'); 
 
             if (!fs.existsSync(uploadDirectory)) {
                 fs.mkdirSync(uploadDirectory, { recursive: true });
             }
 
             const filePath = path.join(uploadDirectory, file.originalname);
-
-            // Leemos el archivo directamente del almacenamiento temporal
+            let url = this.URL + file.originalname;
             fs.readFile(file.path, (err, data) => {
                 if (err) {
                     console.error('Error al leer el archivo:', err);
                     return null;
                 }
 
-                // Escribimos el contenido del archivo en el sistema de archivos local
                 fs.writeFile(filePath, data, (err) => {
                     if (err) {
                         console.error('Error al escribir el archivo:', err);
@@ -31,8 +34,10 @@ export default class StorageLocalService implements StorageService {
                     }
                 });
             });
+            
 
-            return filePath;
+
+            return url;
         } catch (error) {
             console.error('Error:', error);
             return null;
