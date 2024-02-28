@@ -6,7 +6,7 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 1. [x] **Búsqueda de Hoteles:**
    - Los usuarios podrán buscar hoteles utilizando filtros como ubicación, fechas de estadía, número de habitaciones y preferencias de servicios.
 
-2. [ ] **Visualización de Resultados:**
+2. [x] **Visualización de Resultados:**
    - Se mostrarán resultados de búsqueda detallados que incluyan información sobre el hotel, imágenes, precios, disponibilidad y servicios ofrecidos.
 
 3. [ ] **Reserva de Habitaciones:**

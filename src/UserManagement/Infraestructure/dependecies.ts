@@ -21,8 +21,19 @@ import { ByEncryptServices } from "./Services/ByEncryptServices";
 import { SingInUserCase } from "../Application/UseCase/SingInUserCase";
 import { SingOutUserCase } from "../Application/UseCase/SingOutUserCase";
 import { TokenServices } from "./Services/TokenServices";
+import { DeleteHotelValorationCase } from "../Application/UseCase/DeleteHotelValorationCase";
+import { MongoHotelValorationsRepository } from "./Repositories/MongoHotelValorationsRepository";
+import { GetHotelValorationsByHotelCase } from "../Application/UseCase/GetHotelValorationsByHotelCase";
+import { GetHotelValorationsByUserCase } from "../Application/UseCase/GetHotelValorationsByUserCase";
+import { SaveHotelValorationsCase } from "../Application/UseCase/SaveHotelValorationsCase";
+import { UpdateHotelValorationsCase } from "../Application/UseCase/UpdateHotelValorationCase";
+import { DeleteHotelValorationController } from "./Controllers/DeleteHotelValorationController";
+import { GetHotelValorationsByHotelController } from "./Controllers/GetHotelValorationsByHotelController";
+import { SaveHotelValorationsController } from "./Controllers/SaveHotelValorationsController";
+import { UpdateHotelValorationController } from "./Controllers/UpdateHotelValorationController";
 
 export const databaseRepository = new MongoDBUserRepository();
+export const databaseRepositoryHotel= new MongoHotelValorationsRepository();
 
 export const encriptServices = new ByEncryptServices();
 export const nodemailerEmailService = new NodemailerEmailService();
@@ -36,8 +47,11 @@ export const listUsersCase = new ListUsersCase(databaseRepository);
 export const activateUserCase = new ActivateUserCase(databaseRepository);
 export const singInUserCase = new SingInUserCase(databaseRepository);
 export const singOutUserCase = new SingOutUserCase(databaseRepository);
-
-
+export const deleteHotelValorationCase = new DeleteHotelValorationCase(databaseRepositoryHotel);
+export const getHotelValorationsByHotelCase = new GetHotelValorationsByHotelCase(databaseRepositoryHotel);
+export const getHotelValorationsByUserCase = new GetHotelValorationsByUserCase(databaseRepositoryHotel);
+export const saveHotelValorationsCase = new SaveHotelValorationsCase(databaseRepositoryHotel);
+export const updateHotelValorationCase = new UpdateHotelValorationsCase(databaseRepositoryHotel);
 
 export const singInUserController = new SingInUserController(singInUserCase, encriptServices, tokenServices);
 export const singUpUserController = new SingUpUserController(singUpUserCase,nodemailerEmailService, encriptServices);
@@ -48,3 +62,8 @@ export const updateUserController = new UpdateUserController(updateUserUseCase, 
 export const listUsersController = new ListUsersController(listUsersCase);
 export const activateUserController = new ActivateUserController(activateUserCase);
 export const singOutUserController = new SingOutUserController(singOutUserCase);
+export const deleteHotelValorationController = new DeleteHotelValorationController(deleteHotelValorationCase);
+export const getHotelValorationsByHotelController = new GetHotelValorationsByHotelController(getHotelValorationsByHotelCase);
+export const getHotelValorationsByUserController = new GetHotelValorationsByHotelController(getHotelValorationsByUserCase);
+export const saveHotelValorationsController = new SaveHotelValorationsController(saveHotelValorationsCase);
+export const updateHotelValorationController = new UpdateHotelValorationController(updateHotelValorationCase);
