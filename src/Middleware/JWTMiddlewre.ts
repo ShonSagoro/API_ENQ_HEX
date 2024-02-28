@@ -29,6 +29,9 @@ class JWTMiddleware {
             return res.status(401).json({ message: 'Invalid token' });
         }
     }
+    public static async VerifyTokenTry(req: Request, res: Response, next: NextFunction) {
+        next();
+    }
 
     public static async GenerateToken(data: any): Promise<string> {
         if (!this.JWT_SECRET) {
