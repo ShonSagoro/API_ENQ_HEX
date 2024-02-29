@@ -16,6 +16,8 @@ export class Hotel implements ValidatableEntity {
 
     private rating: number;
 
+    private comments: string[];
+
     private images: Images[];
     
     private rooms: Room[];
@@ -30,6 +32,7 @@ export class Hotel implements ValidatableEntity {
         this.rating = 0;
         this.images = [];
         this.rooms = [];
+        this.comments = [];
     }
     
     getRooms(): Room[] {
@@ -79,6 +82,13 @@ export class Hotel implements ValidatableEntity {
         this.images = images;
     }
 
+    getComments(): string[] {
+        return this.comments;
+    }
+
+    setComments(comments: string[]): void {
+        this.comments = comments;
+    }
     async validate() {
         return Promise.resolve();
     }

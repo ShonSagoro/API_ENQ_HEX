@@ -1,20 +1,19 @@
 import { Collection } from "mongodb";
-import { Hotel } from "../../Domain/Entities/Hotel";
-import { HotelInterface } from "../../Domain/Port/HotelInterface";
 import { connect } from "../../../Database/mongodb";
-import { Images } from "../../Domain/Entities/Images";
-import Room from "../../Domain/Entities/Room";
 import { HotelValorationsInterface } from "../../Domain/Port/HotelValorationInterface";
 import { HotelValorations } from "../../Domain/Entities/HotelValorations";
+import { MongoHotelRepository } from "./MongoHotelRepository";
 
 export class MongoHotelValorationsRepository implements HotelValorationsInterface {
     private collection!: Collection | any;
+    private mongHotelRepository: MongoHotelRepository = new MongoHotelRepository;
     constructor() {
         this.initializeCollection();
     }
     async save(hotelRating: HotelValorations): Promise<HotelValorations | null> {
         try {
             await this.collection.insertOne(hotelRating);
+            await this.mongHotelRepository.updateValoration(hotelRating.getUUIDHotel());
             return hotelRating
         } catch (error) {
             return null

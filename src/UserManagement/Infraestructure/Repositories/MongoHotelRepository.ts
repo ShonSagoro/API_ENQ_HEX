@@ -4,11 +4,33 @@ import { HotelInterface } from "../../Domain/Port/HotelInterface";
 import { connect } from "../../../Database/mongodb";
 import { Images } from "../../Domain/Entities/Images";
 import Room from "../../Domain/Entities/Room";
+import { MongoHotelValorationsRepository } from "./MongoHotelValorationsRepository";
 
 export class MongoHotelRepository implements HotelInterface {
     private collection!: Collection | any;
+    private mongoHotelValorationsRepository: MongoHotelValorationsRepository= new MongoHotelValorationsRepository();
     constructor() {
         this.initializeCollection();
+    }
+    async updateValoration(uuid: string): Promise<void> {
+        try {
+            let valorations = await this.mongoHotelValorationsRepository.listByHotel(uuid); 
+            if (valorations) {
+                let total = 0;
+                let comments: string[]=[];
+                valorations.forEach((element) => {
+                    total += element.getStars();
+                });
+                valorations.slice(0, 10).forEach((element) => {
+                    comments.push(element.getComment());
+                  });
+
+                let rating = total / valorations.length;
+                await this.collection.updateOne({ uuid }, { $set: { rating, comments } });
+            }
+        } catch (error) {
+            
+        }
     }
 
     async findByName(name: string): Promise<Hotel[] | null> {

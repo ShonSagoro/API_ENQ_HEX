@@ -16,4 +16,5 @@ export interface HotelInterface {
     addImageHotel(uuid: string, image: Images): Promise<Images | null>;
     deleteImageHotel(uuid: string, uuid_image:string): Promise<void>; 
     deleteRoom(uuid: string, number_room:number): Promise<void>; 
+    updateValoration(uuid: string): Promise<void>;
 }
