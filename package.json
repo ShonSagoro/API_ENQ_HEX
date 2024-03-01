@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "@google-cloud/storage": "^7.7.0",
+    "@stripe/stripe-js": "^3.0.6",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
     "@types/signale": "^1.4.7",
@@ -45,6 +46,7 @@
     "signale": "^1.4.0",
     "sqlite": "^5.1.1",
     "sqlite3": "^5.1.7",
+    "stripe": "^14.19.0",
     "uuid": "^9.0.1"
   }
 }
