@@ -3,6 +3,7 @@ import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 import { Reservation } from "../../Domain/Entities/Reservation";
 import { PaymentMethod } from "../../Domain/Entities/PaymentMethod";
 import { connect } from "../../../Database/mongodb";
+import { MongoHotelRepository } from "./MongoHotelRepository";
 
 
 export class MongoDBReservationRepository implements ReservationInterface{
@@ -11,6 +12,14 @@ export class MongoDBReservationRepository implements ReservationInterface{
 
     constructor() {
         this.initializeCollection();
+    }
+    private _mongHotelRepository: MongoHotelRepository | null = null;
+
+    get mongHotelRepository(): MongoHotelRepository {
+        if (!this._mongHotelRepository) {
+            this._mongHotelRepository = new MongoHotelRepository();
+        }
+        return this._mongHotelRepository;
     }
 
     async findAllByUserUUID(userUUID: string): Promise<Reservation[] | null> {
@@ -30,6 +39,7 @@ export class MongoDBReservationRepository implements ReservationInterface{
     async create(reservation: Reservation): Promise<Reservation | null> {
         try {
             await this.collection.insertOne(reservation);
+            await this.mongHotelRepository.updateRoom(reservation.getHotelUUID(), reservation.getRoomNumber(), "reserved");
             return reservation;
         } catch (error) {
             return null
