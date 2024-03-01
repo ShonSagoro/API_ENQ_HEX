@@ -73,7 +73,11 @@ export class MongoDBReservationRepository implements ReservationInterface{
 
     async delete(uuid:string): Promise<void> {
         try {
-            await this.collection.deleteOne({ uuid });
+            let reservation = await this.findByUUID(uuid);
+            if(reservation){
+                await this.collection.deleteOne({ uuid });
+                await this.mongHotelRepository.updateRoom(reservation.getHotelUUID(), reservation.getRoomNumber(), "free");
+            }
         } catch (error) {
             throw new Error('Error deleting user');
         }

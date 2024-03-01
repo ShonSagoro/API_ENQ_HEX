@@ -9,7 +9,7 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 2. [x] **Visualización de Resultados:**
    - Se mostrarán resultados de búsqueda detallados que incluyan información sobre el hotel, imágenes, precios, disponibilidad y servicios ofrecidos.
 
-3. [ ] **Reserva de Habitaciones:**
+3. [x] **Reserva de Habitaciones:**
    - Los usuarios podrán seleccionar habitaciones disponibles y realizar reservas para las fechas deseadas, con la opción de personalizar su reserva según sus necesidades.
 
 4. [ ] **Gestión de Pagos:**
@@ -18,7 +18,7 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 5. [x] **Gestión de Usuarios:**
    - Se permitirá a los usuarios registrarse para crear cuentas personales, lo que les facilitará el acceso a su historial de reservas y preferencias.
 
-6. [ ] **Gestión de Reservas:**
+6. [x] **Gestión de Reservas:**
    - Los usuarios podrán ver y gestionar sus reservas existentes, realizar cambios en las fechas o cancelar reservas según las políticas del hotel.
 
 7. [ ] **Notificaciones y Recordatorios:**
@@ -26,6 +26,9 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 
 8. [x] **Gestión de Comentarios y Valoraciones:**
    - Se permitirá a los usuarios dejar comentarios y valoraciones sobre su experiencia en el hotel después de completar su estadía, lo que ayudará a otros usuarios a tomar decisiones informadas.
+
+9. [ ] **Deploy de toda la api**
+   - Toda la api debe estar subida a algun servicio de nube como AWS para su correcto funcionamiento
 
 <pre>
 ㅤ  ∧＿∧

@@ -7,7 +7,7 @@ export class RegisterHotelRoomController{
 
     async execute(req: Request, res: Response){
         const data = req.body;
-        let room_data = new Room(data.number, data.price, data.type, data.description);
+        let room_data = new Room(parseInt(data.number), "free", parseFloat(data.price), data.type);
         let uuid = req.params.uuid;
         try{
             let room = await this.registerHotelRoomCase.execute(uuid, room_data);
