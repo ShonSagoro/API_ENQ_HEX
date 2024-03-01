@@ -58,6 +58,15 @@ class PaymentMethod {
         this.paymentType = toPaymentType(paymentType) || PaymentType.Paypay;
     }
 
+    public toObject(): any {
+        return {
+            uuid: this.uuid,
+            amount: this.amount,
+            currency: this.currency,
+            paymentType: fromPaymentType(this.paymentType),
+        };
+    }
+
 }
 
 export {PaymentMethod, toPaymentType, fromPaymentType}

@@ -1,25 +1,27 @@
 import { Request, Response } from "express";
 import { CreateReservationUseCase } from "../../Application/UseCase/CreateReservationUseCase";
 import { Reservation } from "../../Domain/Entities/Reservation";
+import { PaymentMethod } from "../../Domain/Entities/PaymentMethod";
 
 export class CreateReservationController {
     constructor(readonly createReservationUseCase: CreateReservationUseCase) { }
 
     async execute(req: Request, res: Response) {
         const data = req.body;
-        let reservationData = new Reservation(data.uuid,data.description, data.date_start, data.date_end, data.payment); 
+        let payment = new PaymentMethod(parseFloat(data.amount), data.currency, data.paymentType);
+        let reservationData = new Reservation(data.user_uuid, data.hotel_uuid, data.room_uuid, data.description, new Date(data.date_start), new Date(data.date_end), payment);
         try {
-            const reservation = await this.createReservationUseCase.execute(reservationData, data.user_uuid);
+            const reservation = await this.createReservationUseCase.execute(reservationData);
             if (reservation) {
                 res.status(200).send({
                     status: "success",
                     data: {
                         uuid: reservation.uuid,
-                        user_uuid: reservation.user_uuid,
-                        description: reservation.description,
-                        date_start: reservation.date_start,
-                        date_end: reservation.date_end,
-                        payment: reservation.payment,
+                        user_uuid: reservation.getUserUUID(),
+                        description: reservation.getDescription(),
+                        date_start: reservation.getDateStart(),
+                        date_end: reservation.getDateEnd(),
+                        payment: reservation.getPayment(),
                     },
                 });
             } else {

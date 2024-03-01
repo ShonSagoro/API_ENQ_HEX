@@ -8,7 +8,14 @@ import { MongoHotelValorationsRepository } from "./MongoHotelValorationsReposito
 
 export class MongoHotelRepository implements HotelInterface {
     private collection!: Collection | any;
-    private mongoHotelValorationsRepository: MongoHotelValorationsRepository= new MongoHotelValorationsRepository();
+    private _mongoHotelValorationsRepository: MongoHotelValorationsRepository | null = null;
+
+    get mongoHotelValorationsRepository(): MongoHotelValorationsRepository {
+        if (!this._mongoHotelValorationsRepository) {
+            this._mongoHotelValorationsRepository = new MongoHotelValorationsRepository();
+        }
+        return this._mongoHotelValorationsRepository;
+    }
     constructor() {
         this.initializeCollection();
     }

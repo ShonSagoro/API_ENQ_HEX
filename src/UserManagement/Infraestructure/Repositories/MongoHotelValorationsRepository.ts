@@ -6,7 +6,15 @@ import { MongoHotelRepository } from "./MongoHotelRepository";
 
 export class MongoHotelValorationsRepository implements HotelValorationsInterface {
     private collection!: Collection | any;
-    private mongHotelRepository: MongoHotelRepository = new MongoHotelRepository;
+    private _mongHotelRepository: MongoHotelRepository | null = null;
+
+    get mongHotelRepository(): MongoHotelRepository {
+        if (!this._mongHotelRepository) {
+            this._mongHotelRepository = new MongoHotelRepository();
+        }
+        return this._mongHotelRepository;
+    }
+    
     constructor() {
         this.initializeCollection();
     }
