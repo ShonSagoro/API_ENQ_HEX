@@ -1,10 +1,10 @@
 import { Reservation } from "../../Domain/Entities/Reservation";
 import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 
-export class CreateReservationUseCase {
+export class FindAllByUserUUIDUseCase {
     constructor(readonly reservationInterface: ReservationInterface) {}
 
-    async execute(reservation: Reservation): Promise<Reservation | null> {
-        return this.reservationInterface.create(reservation);
+    async execute(uuid_user:string): Promise<Reservation[] | null> {
+        return this.reservationInterface.findAllByUserUUID(uuid_user);
     }
 }

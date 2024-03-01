@@ -1,23 +1,35 @@
-import { connect } from "../../../database/mongodb";
 import { Collection } from "mongodb";
 import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 import { Reservation } from "../../Domain/Entities/Reservation";
+import { PaymentMethod } from "../../Domain/Entities/PaymentMethod";
+import { connect } from "../../../Database/mongodb";
 
 
 export class MongoDBReservationRepository implements ReservationInterface{
+
     private collection!: Collection|any;
+
     constructor() {
         this.initializeCollection();
     }
 
-    private async initializeCollection(): Promise<void> {
-        this.collection = await connect("reservation");
+    async findAllByUserUUID(userUUID: string): Promise<Reservation[] | null> {
+        try {
+            const result = await this.collection.find({ uuid_user: userUUID });
+            return result.map((element: any) => {
+                let paymentMethod = new PaymentMethod(element.amount, element.currency, element.paymentType);
+                let reservation = new Reservation(element.uuid_user, element.uuid_room, element.description, element.date, element.start_time, element.end_time, paymentMethod);
+                reservation.uuid = element.uuid;
+                return reservation;
+            });
+        } catch (error) {
+            return null;
+        }
     }
 
-    async create(reservation: Reservation, user_uuid: string): Promise<Reservation | null> {
+    async create(reservation: Reservation): Promise<Reservation | null> {
         try {
-            const newReservationCreated = new Reservation(user_uuid, reservation.description, reservation.date_start, reservation.date_end, reservation.payment);
-            await this.collection.insertOne(newReservationCreated);
+            await this.collection.insertOne(reservation);
             return reservation;
         } catch (error) {
             return null
@@ -28,7 +40,8 @@ export class MongoDBReservationRepository implements ReservationInterface{
         try {
             const result = await this.collection.findOne({ uuid });
             if (result) {
-                let reservation = new Reservation(result.date, result.hour, result.duration, result.status, result.user_uuid);
+                let paymentMethod = new PaymentMethod(result.amount, result.currency, result.paymentType);
+                let reservation = new Reservation(result.uuid_user, result.uuid_room, result.description, result.date, result.start_time, result.end_time, paymentMethod);
                 reservation.uuid = result.uuid;
                 return result;
             }       
@@ -56,4 +69,7 @@ export class MongoDBReservationRepository implements ReservationInterface{
         }
     }
 
+    private async initializeCollection(): Promise<void> {
+        this.collection = await connect("reservation");
+    }
 }
