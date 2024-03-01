@@ -12,7 +12,7 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 3. [x] **Reserva de Habitaciones:**
    - Los usuarios podrán seleccionar habitaciones disponibles y realizar reservas para las fechas deseadas, con la opción de personalizar su reserva según sus necesidades.
 
-4. [ ] **Gestión de Pagos:**
+4. [x] **Gestión de Pagos:**
    - Se integrarán métodos de pago seguros para permitir a los usuarios completar sus reservas de manera conveniente, con opciones como tarjetas de crédito, PayPal, etc.
 
 5. [x] **Gestión de Usuarios:**
