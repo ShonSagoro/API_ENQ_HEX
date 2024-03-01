@@ -10,7 +10,11 @@ export class CreateReservationController {
     async execute(req: Request, res: Response) {
         const data = req.body;
         let payment = new PaymentMethod(parseFloat(data.amount), data.currency, data.paymentType);
-        let reservationData = new Reservation(data.user_uuid, data.hotel_uuid, data.room_uuid, data.description, new Date(data.date_start), new Date(data.date_end), payment);
+        let dateStats = data.date_start.split("-");
+        let dataEnds = data.date_end.split("-");
+        let dataEndObj = new Date(+dataEnds[2], +dataEnds[1] - 1, +dataEnds[0]);
+        let dataStartObj = new Date(+dateStats[2], +dateStats[1] - 1, +dateStats[0]);
+        let reservationData = new Reservation(data.user_uuid, data.hotel_uuid, parseInt(data.room_uuid), data.description, dataStartObj, dataEndObj, payment);
         try {
             if(await this.paymentMethodService.pay(payment)){
                 const reservation = await this.createReservationUseCase.execute(reservationData);

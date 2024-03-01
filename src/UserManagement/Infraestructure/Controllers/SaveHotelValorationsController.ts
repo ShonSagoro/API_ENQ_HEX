@@ -6,8 +6,8 @@ export class SaveHotelValorationsController {
     constructor(readonly saveHotelValorationsCase: SaveHotelValorationsCase) { }
 
     async execute(req: Request, res: Response) {
-        const { uuidHotel, uuidUser, stars, comment } = req.body;
-        let hotelValoration = new HotelValorations(uuidHotel, uuidUser, stars, comment);
+        const { hotel_uuid, user_uuid, stars, comment } = req.body;
+        let hotelValoration = new HotelValorations(hotel_uuid, user_uuid, parseFloat(stars), comment);
         try {
             let hotelValorations = await this.saveHotelValorationsCase.execute(hotelValoration);
             res.status(200).json(hotelValorations)

@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const Verifytoken = JWTMiddleware.VerifyTokenTry;
-const MODEL_URL = "valoration";
+const MODEL_URL = "valorations";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
 
 export function setupHotelValorationRoutes(app: Express) {
