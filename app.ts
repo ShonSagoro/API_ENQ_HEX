@@ -5,6 +5,8 @@ import dotenv from 'dotenv';
 import { setUpHotelRoutes } from './src/HotelManagement/Infraestructure/Routes/HotelRoutes';
 import { setUpServicesRoutes } from './src/HotelManagement/Infraestructure/Routes/ServicesRoutes';
 import path from 'path';
+import { setupHotelValorationRoutes } from './src/UserManagement/Infraestructure/Routes/HotelValorationRoutes';
+import { setupReservationRoutes } from './src/ReservationsManagement/Infrastructure/Routes/ReservationRoutes';
 dotenv.config();
 
 const app = express();
@@ -19,6 +21,8 @@ app.use(express.json());
 setupUserRoutes(app);
 setUpHotelRoutes(app);
 setUpServicesRoutes(app);
+setupHotelValorationRoutes(app);
+setupReservationRoutes(app);
 app.use(morgan('dev'))
 
 app.listen(PORT, HOST, () => {
