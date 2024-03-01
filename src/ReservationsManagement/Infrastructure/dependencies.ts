@@ -5,12 +5,11 @@ import { FindByUUIDReservationUseCase } from "../Application/UseCase/FindByUUIDR
 import { UpdateReservationUseCase } from "../Application/UseCase/UpdateReservationUseCase";
 import { CreateReservationController } from "./Controllers/CreateReservationController";
 import { DeleteReservationController } from "./Controllers/DeleteReservationController";
-import { FindAllByUUIDUserReservationController } from "./Controllers/FindAllReservationController";
+import { FindAllByUUIDUserReservationController } from "./Controllers/FindAllByUUIDUserReservationController";
 import FindByUUIDReservationController from "./Controllers/FindByUUIDReservationController";
 import { UpdateReservationController } from "./Controllers/UpdateReservationController";
 import { MongoDBReservationRepository } from "./Repositories/MongoReservationRepositoy";
 import PaymentMethodStripeService from "./services/PaymentMethodStripeService";
-import PaymentMethodStripe from "./services/PaymentMethodStripeService";
 
 
 export const database = new MongoDBReservationRepository

@@ -6,8 +6,10 @@ export class FindAllByUUIDUserReservationController {
 
     async execute(req: Request, res: Response) {
         const { uuid } = req.params;
+        console.log(uuid);
         try {
             const result = await this.findAllByUserUUIDUseCase.execute(uuid);
+            console.log(result);
             if (result){
                 return res.status(200).json(result)
             }else{

@@ -22,12 +22,15 @@ export class MongoDBReservationRepository implements ReservationInterface{
         return this._mongHotelRepository;
     }
 
-    async findAllByUserUUID(userUUID: string): Promise<Reservation[] | null> {
+    async findAllByUserUUID(user_uuid: string): Promise<Reservation[] | null> {
         try {
-            const result = await this.collection.find({ uuid_user: userUUID });
+            const result = await this.collection.find( {user_uuid:user_uuid} ).toArray();
+            console.log(result);
             return result.map((element: any) => {
-                let paymentMethod = new PaymentMethod(element.amount, element.currency, element.paymentType);
-                let reservation = new Reservation(element.uuid_user, element.uuid_room, element.description, element.date, element.start_time, element.end_time, paymentMethod);
+                element.uuid_user
+                let paymentMethod = new PaymentMethod(parseInt(element.payment.amount), element.payment.currency, element.payment.paymentType);
+                let reservation = new Reservation(element.user_uuid, element.hotel_uuid, parseInt(element.room_number), element.description, element.start_time, element.end_time, paymentMethod);
+                console.log("asd"+reservation);
                 reservation.uuid = element.uuid;
                 return reservation;
             });
@@ -50,8 +53,8 @@ export class MongoDBReservationRepository implements ReservationInterface{
         try {
             const result = await this.collection.findOne({ uuid });
             if (result) {
-                let paymentMethod = new PaymentMethod(result.amount, result.currency, result.paymentType);
-                let reservation = new Reservation(result.uuid_user, result.uuid_room, result.description, result.date, result.start_time, result.end_time, paymentMethod);
+                let paymentMethod = new PaymentMethod(result.payment.amount, result.payment.currency, result.payment.paymentType);
+                let reservation = new Reservation(result.uuid_user, result.hotel_uuid, parseInt(result.room_number), result.description, new Date(result.start_time), new Date(result.end_time), paymentMethod);
                 reservation.uuid = result.uuid;
                 return result;
             }       
