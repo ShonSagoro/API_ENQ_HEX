@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { createServiceController, deleteServiceController, getByUuidServiceController, listServiceController, updateServiceController } from "../dependencies";
 dotenv.config();
 
-const Verifytoken = JWTMiddleware.VerifyTokenTry;
+const Verifytoken = JWTMiddleware.VerifyToken;
 const MODEL_URL = "services";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
 

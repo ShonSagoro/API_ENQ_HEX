@@ -5,7 +5,7 @@ import dotenv from 'dotenv';
 import { addImageHotelController, createHotelController, deleteHotelController, deleteHotelImagesController, deleteHotelRoomController, getByNameHotelController, getByUuidHotelController, listHotelController, listHotelImagesController, listHotelRoomController, registerHotelRoomController, storageService, updateHotelController } from "../dependencies";
 dotenv.config();
 
-const Verifytoken = JWTMiddleware.VerifyTokenTry;
+const Verifytoken = JWTMiddleware.VerifyToken;
 const MODEL_URL = "hotels";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
 const storage = multer.diskStorage({});

@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 import { createReservationController, deleteReservationController, findAllByUUIDUserReservationController, findByUUIDReservationController, updateReservationController } from "../dependencies";
 dotenv.config();
 
-const Verifytoken = JWTMiddleware.VerifyTokenTry;
+const Verifytoken = JWTMiddleware.VerifyToken;
 const MODEL_URL = "reservatios";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
 

@@ -19,7 +19,7 @@ export class AddHotelImageController{
             return res.status(400).json({ error: "Error in upload image" });
         }
         const image_obj= new Images(uuid, imageUrl);
-        
+        console.log(imageUrl)
         try{
             let image = await this.addImageHotelCase.execute(uuid, image_obj);
             if(image){

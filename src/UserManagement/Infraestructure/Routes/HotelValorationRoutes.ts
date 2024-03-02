@@ -4,7 +4,7 @@ import { activateUserController, deleteHotelValorationCase, deleteUserController
 import dotenv from 'dotenv';
 dotenv.config();
 
-const Verifytoken = JWTMiddleware.VerifyTokenTry;
+const Verifytoken = JWTMiddleware.VerifyToken;
 const MODEL_URL = "valorations";
 const BASE_URL = process.env.BASE_URL || "/api/v1/";
 
