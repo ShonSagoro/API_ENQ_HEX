@@ -14,4 +14,8 @@ export class Credentials {
     getPassword(): string {
         return this.password;
     }
+
+    setPassword(password: string): void {
+        this.password = password;
+    }
 }

@@ -21,7 +21,8 @@ export class SingInUserController {
                 return;
             } else {
                 const uuid = user.uuid;
-                const token = this.GenerateToken({ uuid: uuid });
+                const token = await this.GenerateToken({ uuid: uuid });
+                console.log(token)
                 res.status(200).json({
                     status: "success",
                     token: token,

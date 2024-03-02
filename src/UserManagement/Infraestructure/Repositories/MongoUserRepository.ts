@@ -24,7 +24,7 @@ export class MongoDBUserRepository implements UserInterface {
             if (result) {
                 let status = new Status(result.token, result.verifiedAt);
                 let contact = new Contact(result.contact.name, result.contact.lastName, result.contact.phoneNumber);
-                let credentials = new Credentials(result.credentials.email, result.credentials.password);
+                let credentials = new Credentials(result.credentials.email, "");
               
                 let user = new User(status, contact, credentials);
                 user.uuid = result.uuid;
@@ -93,7 +93,7 @@ export class MongoDBUserRepository implements UserInterface {
             if (result) {
                 let status = new Status(result.token, result.verifiedAt);
                 let contact = new Contact(result.contact.name, result.contact.lastName, result.contact.phoneNumber);
-                let credentials = new Credentials(result.credentials.email, result.credentials.password);
+                let credentials = new Credentials(result.credentials.email, "");
               
                 let user = new User(status, contact, credentials);
                 user.uuid = result.uuid;
@@ -134,6 +134,7 @@ export class MongoDBUserRepository implements UserInterface {
             };
             await this.collection.updateOne({ uuid: uuid }, { $set: updatedUser });
             await this.collection.updateOne({ uuid: uuid }, { $set: user });
+            user.credentials.setPassword("");
             return user;
         } catch (error) {
             return null;
@@ -148,7 +149,7 @@ export class MongoDBUserRepository implements UserInterface {
             return result.map((user: { token: string; verifiedAt: Date; contact: { name: string; lastName: string; phoneNumber: string; }; credentials: { email: string; password: string; }; uuid: string; }) => {
                 let status = new Status(user.token, user.verifiedAt);
                 let contact = new Contact(user.contact.name, user.contact.lastName, user.contact.phoneNumber);
-                let credentials = new Credentials(user.credentials.email, user.credentials.password);
+                let credentials = new Credentials(user.credentials.email, "");
                 
                 let newUser = new User(status, contact, credentials);
                 newUser.uuid = user.uuid;
