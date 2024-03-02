@@ -4,6 +4,7 @@ import { Reservation } from "../../Domain/Entities/Reservation";
 import { PaymentMethod } from "../../Domain/Entities/PaymentMethod";
 import { connect } from "../../../Database/mongodb";
 import { MongoHotelRepository } from "./MongoHotelRepository";
+import { MongoDBUserRepository } from "./MongoUserRepository";
 
 
 export class MongoDBReservationRepository implements ReservationInterface{
@@ -14,12 +15,20 @@ export class MongoDBReservationRepository implements ReservationInterface{
         this.initializeCollection();
     }
     private _mongHotelRepository: MongoHotelRepository | null = null;
+    private _mongoUserRepository: MongoDBUserRepository | null = null;
 
     get mongHotelRepository(): MongoHotelRepository {
         if (!this._mongHotelRepository) {
             this._mongHotelRepository = new MongoHotelRepository();
         }
         return this._mongHotelRepository;
+    }
+
+    get mongoUserRepository(): MongoDBUserRepository {
+        if (!this._mongoUserRepository) {
+            this._mongoUserRepository = new MongoDBUserRepository();
+        }
+        return this._mongoUserRepository;
     }
 
     async findAllByUserUUID(user_uuid: string): Promise<Reservation[] | null> {
@@ -29,8 +38,7 @@ export class MongoDBReservationRepository implements ReservationInterface{
             return result.map((element: any) => {
                 element.uuid_user
                 let paymentMethod = new PaymentMethod(parseInt(element.payment.amount), element.payment.currency, element.payment.paymentType);
-                let reservation = new Reservation(element.user_uuid, element.hotel_uuid, parseInt(element.room_number), element.description, element.start_time, element.end_time, paymentMethod);
-                console.log("asd"+reservation);
+                let reservation = new Reservation(element.user_uuid, element.hotel_uuid, parseInt(element.room_number), element.description, new Date(element.date_start), new Date(element.date_end), paymentMethod);
                 reservation.uuid = element.uuid;
                 return reservation;
             });
@@ -43,6 +51,7 @@ export class MongoDBReservationRepository implements ReservationInterface{
         try {
             await this.collection.insertOne(reservation);
             await this.mongHotelRepository.updateRoom(reservation.getHotelUUID(), reservation.getRoomNumber(), "reserved");
+            await this.mongoUserRepository.notifyUser(reservation.getUserUUID(), reservation);
             return reservation;
         } catch (error) {
             return null
@@ -54,7 +63,7 @@ export class MongoDBReservationRepository implements ReservationInterface{
             const result = await this.collection.findOne({ uuid });
             if (result) {
                 let paymentMethod = new PaymentMethod(result.payment.amount, result.payment.currency, result.payment.paymentType);
-                let reservation = new Reservation(result.uuid_user, result.hotel_uuid, parseInt(result.room_number), result.description, new Date(result.start_time), new Date(result.end_time), paymentMethod);
+                let reservation = new Reservation(result.uuid_user, result.hotel_uuid, parseInt(result.room_number), result.description, new Date(result.date_start), new Date(result.date_end), paymentMethod);
                 reservation.uuid = result.uuid;
                 return result;
             }       

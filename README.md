@@ -23,7 +23,7 @@ El proyecto se centra en el desarrollo de una plataforma integral para la reserv
 
 7. [ ] **Notificaciones y Recordatorios:**
    - Se enviarán notificaciones por correo electrónico o mensajes de texto para confirmar las reservas, recordar las fechas de check-in y check-out, y proporcionar información importante sobre la estadía.
-
+ 
 8. [x] **Gestión de Comentarios y Valoraciones:**
    - Se permitirá a los usuarios dejar comentarios y valoraciones sobre su experiencia en el hotel después de completar su estadía, lo que ayudará a otros usuarios a tomar decisiones informadas.
 
