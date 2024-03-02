@@ -12,6 +12,7 @@ export default class StorageLocalService implements StorageService {
     async saveImage(file: any): Promise<string|null> {
         try {
             console.log(file)
+            file.originalname=file.originalname.replace(/\s/g, '_')
             console.log("el archivo es: ", file.originalname)
             const uploadDirectory = path.join(__dirname, '../../../../public/images'); 
 
