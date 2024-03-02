@@ -4,6 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsnd --respawn app.ts",
+    "build":"tsc",
     "migration_sql": "ts-node src/UserManagement/Infraestructure/Migrations/mysq_migrations/generateMigrations.ts",
     "migration_sqlite": "ts-node src/UserManagement/Infraestructure/Migrations/sqlite_migrations/generateMigrations.ts",
     "test_email": "ts-node src/user/infraestructure/services/NodemailerEmailService.ts",

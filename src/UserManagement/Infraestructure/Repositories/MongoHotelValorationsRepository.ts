@@ -1,5 +1,5 @@
 import { Collection } from "mongodb";
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 import { HotelValorationsInterface } from "../../Domain/Port/HotelValorationInterface";
 import { HotelValorations } from "../../Domain/Entities/HotelValorations";
 import { MongoHotelRepository } from "./MongoHotelRepository";

@@ -2,7 +2,7 @@ import { Collection } from "mongodb";
 import { ReservationInterface } from "../../Domain/Port/ReservationInterface";
 import { Reservation } from "../../Domain/Entities/Reservation";
 import { PaymentMethod } from "../../Domain/Entities/PaymentMethod";
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 import { MongoHotelRepository } from "./MongoHotelRepository";
 import { MongoDBUserRepository } from "./MongoUserRepository";
 

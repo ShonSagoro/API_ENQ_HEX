@@ -1,7 +1,7 @@
 import { Collection } from "mongodb";
 import { ServiceInterface } from "../../Domain/Port/ServiceInterface";
 import { Service } from "../../Domain/Entities/Service";
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 
 export default class MongoServiceRepository implements ServiceInterface {
     private collection!: Collection | any;

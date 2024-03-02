@@ -1,4 +1,4 @@
-import { query } from "../../../Database/mysql";
+import { query } from "../../../database/mysql";
 import { Contact } from "../../Domain/Entities/Contact";
 import { Credentials } from "../../Domain/Entities/Credentials";
 import { Status } from "../../Domain/Entities/Status";

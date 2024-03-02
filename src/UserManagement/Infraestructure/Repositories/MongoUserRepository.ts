@@ -1,5 +1,5 @@
 import { Collection } from "mongodb";
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 import { Contact } from "../../Domain/Entities/Contact";
 import { Credentials } from "../../Domain/Entities/Credentials";
 import { Status } from "../../Domain/Entities/Status";

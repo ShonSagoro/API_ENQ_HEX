@@ -1,7 +1,7 @@
 import { Collection } from "mongodb";
 import { Hotel } from "../../Domain/Entities/Hotel";
 import { HotelInterface } from "../../Domain/Port/HotelInterface";
-import { connect } from "../../../Database/mongodb";
+import { connect } from "../../../database/mongodb";
 import { Images } from "../../Domain/Entities/Images";
 import Room from "../../Domain/Entities/Room";
 import { MongoHotelValorationsRepository } from "./MongoHotelValorationsRepository";

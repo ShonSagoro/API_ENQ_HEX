@@ -2,7 +2,7 @@ import { Contact } from "../../Domain/Entities/Contact";
 import { Credentials } from "../../Domain/Entities/Credentials";
 import { Status } from "../../Domain/Entities/Status";
 import { User } from "../../Domain/Entities/User";
-import{ db } from '../../../Database/sqlitedb';
+import{ db } from '../../../database/sqlitedb';
 import { UserInterface } from '../../Domain/Port/UserInterface';
 import { EncryptService } from "../../Domain/Services/EncriptServices";
 import { TokenServices } from "../../Domain/Services/TokenServices";
